@@ -10,6 +10,7 @@
   <style>
     body {
       margin: 0;
+      overflow: hidden;
     }
 
     h1,
@@ -17,17 +18,17 @@
       color: rgb(245, 246, 245);
       text-align: center;
       width: 100%;
-
       font-family: 'Inter';
       font-weight: 100;
-
       transition: opacity 0.5s ease-in-out;
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
     #title {
       position: fixed;
       font-size: 4em;
       top: 0.02em;
+      z-index: 100;
     }
 
     #artist {
@@ -35,6 +36,44 @@
       font-size: 2em;
       color: rgb(247, 246, 249);
       top: 3.5em;
+      z-index: 100;
+    }
+
+    #controls {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: 'Inter';
+      font-size: 14px;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #controls h3 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      font-weight: 100;
+    }
+
+    #controls ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    #controls li {
+      margin: 5px 0;
+    }
+
+    .key {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -43,6 +82,20 @@
   <script type="module" src="/main.js"></script>
   <h1 id="title"></h1>
   <h2 id="artist"></h2>
+  
+  <div id="controls">
+    <h3>Controls</h3>
+    <ul>
+      <li><span class="key">Mouse</span> - Orbit camera</li>
+      <li><span class="key">Drag</span> - Rotate gallery</li>
+      <li><span class="key">Scroll</span> - Zoom camera</li>
+      <li><span class="key">← →</span> - Navigate gallery</li>
+      <li><span class="key">Space</span> - Reset camera</li>
+      <li><span class="key">R</span> - Random rotation</li>
+    </ul>
+    <button id="auto-rotate-btn" style="margin-top:10px; width:100%; padding:6px; font-size:14px; border-radius:5px; border:none; background:#222; color:#fff; cursor:pointer;">Auto-Rotate: Off</button>
+  </div>
+  <div id="tooltip" style="position:fixed; display:none; pointer-events:none; background:rgba(30,30,30,0.95); color:#fff; padding:10px 16px; border-radius:8px; font-size:1.1em; z-index:200; box-shadow:0 2px 12px #000; max-width:300px;"></div>
 </body>
 
 </html>
